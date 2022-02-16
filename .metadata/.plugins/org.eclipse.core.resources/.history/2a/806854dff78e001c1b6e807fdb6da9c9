@@ -11,7 +11,6 @@ public class MainApplication {
 		UserController controller = (UserController) container.getBean("userController");
 		
 		System.out.println(controller);
-		System.out.println(controller.getUrl());
 		System.out.println(controller.getUserService());
 		
 	}
