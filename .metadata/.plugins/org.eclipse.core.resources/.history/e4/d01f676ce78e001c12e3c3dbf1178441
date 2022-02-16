@@ -1,0 +1,18 @@
+package demo1;
+
+public class UserController {// receive request
+
+	UserService userService;//dependency, reference
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public void createUser() {
+		userService.saveUser();
+	}
+}

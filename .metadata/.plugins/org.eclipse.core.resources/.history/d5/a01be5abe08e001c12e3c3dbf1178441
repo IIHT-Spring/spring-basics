@@ -1,0 +1,8 @@
+package demo1;
+
+public class UserController {//receive request
+	
+	UserService userService = new UserService();
+	public void createUser() {
+	}
+}

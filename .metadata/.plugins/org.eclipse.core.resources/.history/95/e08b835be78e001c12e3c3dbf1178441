@@ -1,0 +1,7 @@
+package demo1;
+
+public class MockUserService {
+	public  void saveUser() {
+		System.out.println("process request");
+	}
+}
