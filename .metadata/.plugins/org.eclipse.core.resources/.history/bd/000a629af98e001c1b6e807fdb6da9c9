@@ -3,19 +3,13 @@ package demo1.controller;
 import demo1.service.IUserService;
 
 public class UserController {// receive request
-	IUserService userService;// dependency, reference
-
-	public UserController(IUserService userService) {
-		this.userService = userService;
-	}
-
+	IUserService userService ;//dependency, reference
 	String url;
-
 	public Integer createUser() {
-		// Logic
+		//Logic
 		return userService.saveUser();
+		
 	}
-
 	public String getUrl() {
 		return url;
 	}
@@ -24,7 +18,13 @@ public class UserController {// receive request
 		this.url = url;
 	}
 
+
 	public IUserService getUserService() {
 		return userService;
 	}
+
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
+	}
+
 }

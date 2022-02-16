@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean scope="prototype" class="demo1.controller.UserController" id="userController" >
-		<property name="userService" ref="service1"></property>
+		<constructor-arg ref="service1"></constructor-arg>
 		<property name="url" value="http://yahoo.com"></property>
 	</bean>
 	<bean class="demo1.service.UserService" id="service1"></bean>
