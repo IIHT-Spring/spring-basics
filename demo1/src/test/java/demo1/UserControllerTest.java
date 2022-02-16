@@ -1,8 +1,8 @@
 package demo1;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import demo1.controller.UserController;
 
 public class UserControllerTest {
 
@@ -10,7 +10,7 @@ public class UserControllerTest {
 	public void testCreateUser() {
 		UserController controller = new UserController();
 		controller.setUserService(new MockUserService());
-		controller.createUser();
+		controller.createUser(); //ABC234
 	}
 
 }
