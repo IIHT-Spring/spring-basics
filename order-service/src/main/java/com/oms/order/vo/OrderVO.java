@@ -2,12 +2,14 @@ package com.oms.order.vo;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class OrderVO { // value object
-	@NotBlank
+	@NotBlank(message = "item is mandatory")
 	String item;
 	@Min(value = 0)
 	float price;
+	@NotNull
 	AddressVO address;
 
 	public AddressVO getAddress() {
