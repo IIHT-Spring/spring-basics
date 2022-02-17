@@ -1,5 +1,7 @@
 package com.oms.order.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +17,7 @@ public class OrderController {
 	}
 
 	@PostMapping("/order")  //HTTP method+path = REST API endpoint
-	public String createOrder(@RequestBody OrderVO orderVO) {
+	public String createOrder(@Valid @RequestBody OrderVO orderVO) {
 		System.out.println(orderVO.getItem());
 		System.out.println(orderVO.getPrice());
 		System.out.println(orderVO.getAddress().getHouse());

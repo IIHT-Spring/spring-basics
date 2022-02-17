@@ -1,7 +1,12 @@
 package com.oms.order.vo;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 public class OrderVO { // value object
+	@NotBlank
 	String item;
+	@Min(value = 0)
 	float price;
 	AddressVO address;
 
