@@ -1,7 +1,0 @@
-package demo1;
-
-public class UserService {
-	public  void saveUser() {
-		System.out.println("process request");
-	}
-}

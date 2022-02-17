@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="demo1.UserController"/>
-    <fullyQualifiedTypeName name="demo1.UserService"/>
-    <fullyQualifiedTypeName name="demo1.MockUserService"/>
-    <fullyQualifiedTypeName name="demo1.IUserService"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-</qualifiedTypeNameHistroy>
