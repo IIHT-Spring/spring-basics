@@ -18,6 +18,7 @@ public class OrderController {
 	public String createOrder(@RequestBody OrderVO orderVO) {
 		System.out.println(orderVO.getItem());
 		System.out.println(orderVO.getPrice());
+		System.out.println(orderVO.getAddress().getHouse());
 		return "created";
 	}
 }
