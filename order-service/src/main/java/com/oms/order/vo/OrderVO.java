@@ -9,7 +9,7 @@ public class OrderVO { // value object
 	String item;
 	@Min(value = 0)
 	float price;
-	@NotNull
+//	@NotNull
 	AddressVO address;
 
 	public AddressVO getAddress() {

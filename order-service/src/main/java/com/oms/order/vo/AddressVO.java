@@ -5,8 +5,8 @@ import javax.validation.constraints.Pattern;
 
 public class AddressVO {
 	String house;
-	@NotNull
-	@Pattern(regexp = "^(.+)@(.+)$") // ram@gmail.com //pending
+//	@NotNull
+//	@Pattern(regexp = "^(.+)@(.+)$") // ram@gmail.com //pending
 	String email;
 
 	public String getEmail() {

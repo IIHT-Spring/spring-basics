@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+	function save(){
+		const item = document.getElementById("item");
+		alert(item.value);
+		const price = document.getElementById("price");
+		alert(price.value); 
+		const payload = {
+				item:item.value,
+				price: price.value,
+				address:{}
+		}
+		const options = {//ajax http request
+			method:'POST',
+			body: JSON.stringify(payload),
+			headers:{
+				"content-type":"application/json"
+			}
+		}
+		fetch("http://localhost:8080/order", options);
+	}
+</script>
+</head>
+<body>
+	test
+	<form>
+	<div>Order form</div>
+	<input placeholder="Item Name" id="item" value='Laptop' required>
+	<input type="number" placeholder="Price" id='price' required>
+	<input type="email" placeholder="Email" value='pariweshg@gmail.com' required>
+	</form>
+	<button onclick="save()">save</button>
+</body>
+</html>
