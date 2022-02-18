@@ -48,7 +48,7 @@ public class OrderController {// singleton, spring bean
 		System.out.println("controller=" + this.hashCode());
 		System.out.println(orderVO.hashCode());
 		System.out.println(orderVO.getPrice());
-		System.out.println(orderVO.getAddress().getHouse());
+		System.out.println(orderVO.getAddress().getEmail());
 		orders.add(orderVO);
 		return "created";
 	}

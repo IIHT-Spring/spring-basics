@@ -4,35 +4,44 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script>
-	function save(){
+	function save() {
 		const item = document.getElementById("item");
 		alert(item.value);
 		const price = document.getElementById("price");
-		alert(price.value); 
+		const emailElement = document.getElementById("email");
 		const payload = {
-				item:item.value,
-				price: price.value,
-				address:{}
+			item : item.value,
+			price : price.value,
+			address : {
+				email : emailElement.value
+			}
 		}
 		const options = {//ajax http request
-			method:'POST',
-			body: JSON.stringify(payload),
-			headers:{
-				"content-type":"application/json"
+			method : 'POST',
+			body : JSON.stringify(payload),
+			headers : {
+				"content-type" : "application/json"
 			}
 		}
 		fetch("http://localhost:8080/order", options);
+	}
+
+	function gotopage2() {
+		document.location.pathname = "/page2.html"
 	}
 </script>
 </head>
 <body>
 	test
+	<a href="page2.html">Go to page2</a>
 	<form>
-	<div>Order form</div>
-	<input placeholder="Item Name" id="item" value='Laptop' required>
-	<input type="number" placeholder="Price" id='price' required>
-	<input type="email" placeholder="Email" value='pariweshg@gmail.com' required>
+		<div>Order form</div>
+		<input placeholder="Item Name" id="item" value='Laptop' required>
+		<input type="number" placeholder="Price" id='price' required>
+		<input type="email" placeholder="Email" id='email'
+			value='pariweshg@gmail.com' required>
 	</form>
 	<button onclick="save()">save</button>
+	<button onclick="gotopage2()">got to page2</button>
 </body>
 </html>
