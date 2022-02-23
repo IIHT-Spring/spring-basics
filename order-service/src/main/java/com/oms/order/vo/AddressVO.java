@@ -1,9 +1,16 @@
 package com.oms.order.vo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
+@Entity
 public class AddressVO {
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	Integer id;
 	String house;
 	@NotNull
 	@Pattern(regexp = "^(.+)@(.+)$") // ram@gmail.com //pending
