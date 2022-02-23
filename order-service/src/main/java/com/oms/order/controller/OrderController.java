@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oms.order.service.IOrderService;
 import com.oms.order.vo.OrderVO;
 
 @RestController
 public class OrderController {// singleton, spring bean
+	@Autowired //field injection
+	IOrderService orderService;
 	List<OrderVO> orders = new ArrayList<>();
 	@GetMapping("/order")
 	public Integer getOrder(@RequestParam("item") String item) {
@@ -45,10 +49,7 @@ public class OrderController {// singleton, spring bean
 
 	@PostMapping("/order") // HTTP method+path = REST API endpoint
 	public String createOrder(@Valid @RequestBody OrderVO orderVO) {
-		System.out.println("controller=" + this.hashCode());
-		System.out.println(orderVO.hashCode());
-		System.out.println(orderVO.getPrice());
-		System.out.println(orderVO.getAddress().getEmail());
+		orderService.createOrder(orderVO);
 		orders.add(orderVO);
 		return "created";
 	}
