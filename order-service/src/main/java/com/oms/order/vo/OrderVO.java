@@ -1,11 +1,13 @@
 package com.oms.order.vo;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,8 +23,8 @@ public class OrderVO { // value object
 	@Min(value = 0)
 	float price;
 	@NotNull
-	@OneToOne(cascade = CascadeType.ALL)
-	AddressVO address;  
+	@OneToMany(cascade = CascadeType.ALL)
+	List<AddressVO> addresses;
 
 	public Integer getId() {
 		return id;
@@ -32,12 +34,12 @@ public class OrderVO { // value object
 		this.id = id;
 	}
 
-	public AddressVO getAddress() {
-		return address;
+	public List<AddressVO> getAddresses() {
+		return addresses;
 	}
 
-	public void setAddress(AddressVO address) {
-		this.address = address;
+	public void setAddresses(List<AddressVO> addresses) {
+		this.addresses = addresses;
 	}
 
 	public String getItem() {
