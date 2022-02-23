@@ -1,6 +1,7 @@
 package com.oms.order.vo;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class OrderVO { // value object
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Id
 	Integer id;
 
@@ -23,8 +24,8 @@ public class OrderVO { // value object
 	@Min(value = 0)
 	float price;
 	@NotNull
-	@OneToMany(cascade = CascadeType.ALL)
-	List<AddressVO> addresses;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "orderVO")
+	Set<AddressVO> addresses;
 
 	public Integer getId() {
 		return id;
@@ -34,11 +35,11 @@ public class OrderVO { // value object
 		this.id = id;
 	}
 
-	public List<AddressVO> getAddresses() {
+	public Set<AddressVO> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(List<AddressVO> addresses) {
+	public void setAddresses(Set<AddressVO> addresses) {
 		this.addresses = addresses;
 	}
 
