@@ -13,6 +13,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,9 +40,16 @@ public class OrderController {// singleton, spring bean
 	}
 
 	@DeleteMapping("/order/{id}")
-	public void deleteOrder(@PathVariable Integer id) {
+	public ResponseEntity<OrderVO> deleteOrder(@PathVariable Integer id) {
 		System.out.println(id);
-		orderService.deleteOrder(id);
+		ResponseEntity<OrderVO> responseEntity = new ResponseEntity<OrderVO>(HttpStatus.OK);
+		try {
+			orderService.deleteOrder(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			responseEntity = new ResponseEntity<OrderVO>(HttpStatus.NOT_FOUND);
+		}
+		return responseEntity;
 	}
 
 	@GetMapping("/order")
