@@ -7,8 +7,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.oms.order.vo.OrderVO;
@@ -42,6 +40,11 @@ public class OrderService implements IOrderService {
 	@Override
 	public void deleteOrder(Integer id) {
 		orderRepo.deleteById(id);
+	}
+
+	@Override
+	public List<OrderVO> getOrderByItem(String item) {
+		return orderRepo.getByItem(item);
 	}
 
 }

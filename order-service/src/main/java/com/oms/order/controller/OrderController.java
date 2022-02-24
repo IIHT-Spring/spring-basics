@@ -38,7 +38,10 @@ public class OrderController {// singleton, spring bean
 		Optional<OrderVO> order = orderService.getOrder(id);
 		return order;
 	}
-
+	@GetMapping("/order/item/{item}")
+	public List<OrderVO> getOrderByItem(@PathVariable String item) {
+		return orderService.getOrderByItem(item);
+	}
 	@DeleteMapping("/order/{id}")
 	public ResponseEntity<OrderVO> deleteOrder(@PathVariable Integer id) {
 		System.out.println(id);

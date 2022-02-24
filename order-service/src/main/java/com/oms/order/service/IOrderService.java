@@ -14,4 +14,6 @@ public interface IOrderService {
 	public List<OrderVO> getAllOrder();
 
 	public void deleteOrder(Integer id);
+
+	public List<OrderVO> getOrderByItem(String item);
 }
