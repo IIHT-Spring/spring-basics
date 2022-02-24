@@ -1,7 +1,6 @@
 package com.oms.order.vo;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,8 +23,8 @@ public class OrderVO { // value object
 	@Min(value = 0)
 	float price;
 	@NotNull
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "orderVO")
-	Set<AddressVO> addresses;
+	@OneToMany(cascade = CascadeType.ALL)
+	List<AddressVO> addresses;
 
 	public Integer getId() {
 		return id;
@@ -35,11 +34,11 @@ public class OrderVO { // value object
 		this.id = id;
 	}
 
-	public Set<AddressVO> getAddresses() {
+	public List<AddressVO> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(Set<AddressVO> addresses) {
+	public void setAddresses(List<AddressVO> addresses) {
 		this.addresses = addresses;
 	}
 

@@ -17,9 +17,9 @@ public class AddressVO {
 	@NotNull
 	@Pattern(regexp = "^(.+)@(.+)$") // ram@gmail.com //pending
 	String email;
-	@ManyToOne()
-	@JoinColumn(name="order_id") //which column will act as foreign key?
-	private OrderVO orderVO;
+//	@ManyToOne()
+//	@JoinColumn(name="order_id") //which column will act as foreign key?
+//	private OrderVO orderVO;
 	public Integer getId() {
 		return id;
 	}
@@ -28,13 +28,13 @@ public class AddressVO {
 		this.id = id;;
 	}
 
-	public OrderVO getOrderVO() {
-		return orderVO;
-	}
-
-	public void setOrderVO(OrderVO orderVO) {
-		this.orderVO = orderVO;
-	}
+//	public OrderVO getOrderVO() {
+//		return orderVO;
+//	}
+//
+//	public void setOrderVO(OrderVO orderVO) {
+//		this.orderVO = orderVO;
+//	}
 
 	public String getEmail() {
 		return email;
