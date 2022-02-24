@@ -1,5 +1,7 @@
 package com.oms.order.controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,20 +29,21 @@ import com.oms.order.vo.OrderVO;
 
 @RestController
 public class OrderController {// singleton, spring bean
-	@Autowired //field injection
+	@Autowired // field injection
 	IOrderService orderService;
+
 	@GetMapping("/order/{id}")
 	public Optional<OrderVO> getOrder(@PathVariable Integer id) {
 		Optional<OrderVO> order = orderService.getOrder(id);
-		return order ;
+		return order;
 	}
-	
+
 	@DeleteMapping("/order/{id}")
-	public Integer deleteOrder(@PathVariable String id) {
+	public void deleteOrder(@PathVariable Integer id) {
 		System.out.println(id);
-		return 1;
+		orderService.deleteOrder(id);
 	}
-	
+
 	@GetMapping("/order")
 	public List<OrderVO> getOrders() {
 		return orderService.getAllOrder();
@@ -59,8 +63,9 @@ public class OrderController {// singleton, spring bean
 	}
 
 	@PostMapping("/order") // HTTP method+path = REST API endpoint
-	public Integer createOrder(@Valid @RequestBody OrderVO orderVO) {
-		OrderVO savedOrder = orderService.createOrder(orderVO);
+	public Integer createOrder(@Valid @RequestBody OrderVO orderVO) throws IOException {
+		OrderVO savedOrder = null;
+		savedOrder = orderService.createOrder(orderVO);
 		return savedOrder.getId();
 	}
 }
