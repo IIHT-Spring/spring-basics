@@ -55,6 +55,9 @@ public class OrderVO { // value object
 	}
 
 	public void setPrice(float price) {
+//		if(price <=0) {
+//			
+//		}
 		this.price = price;
 	}
 }

@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,20 +32,36 @@ import com.oms.order.service.IOrderService;
 import com.oms.order.vo.OrderVO;
 
 @RestController
+@RequestMapping("/order/")
 public class OrderController {// singleton, spring bean
 	@Autowired // field injection
 	IOrderService orderService;
 
-	@GetMapping("/order/{id}")
+	@GetMapping("{id}")
 	public Optional<OrderVO> getOrder(@PathVariable Integer id) {
 		Optional<OrderVO> order = orderService.getOrder(id);
 		return order;
 	}
-	@GetMapping("/order/item/{item}")
+
+	@GetMapping("item/{item}")
 	public List<OrderVO> getOrderByItem(@PathVariable String item) {
 		return orderService.getOrderByItem(item);
 	}
-	@DeleteMapping("/order/{id}")
+
+	@PutMapping("{id}")
+	public ResponseEntity<OrderVO> updateOrder(@Valid @RequestBody OrderVO orderVO, @PathVariable Integer id) {
+		ResponseEntity<OrderVO> responseEntity = new ResponseEntity<OrderVO>(HttpStatus.OK);
+		orderVO.setId(id);
+		try {
+			orderService.updateOrder(orderVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			responseEntity = new ResponseEntity<OrderVO>(HttpStatus.NOT_FOUND);
+		}
+		return responseEntity;
+	}
+
+	@DeleteMapping("{id}")
 	public ResponseEntity<OrderVO> deleteOrder(@PathVariable Integer id) {
 		System.out.println(id);
 		ResponseEntity<OrderVO> responseEntity = new ResponseEntity<OrderVO>(HttpStatus.OK);
@@ -55,7 +74,7 @@ public class OrderController {// singleton, spring bean
 		return responseEntity;
 	}
 
-	@GetMapping("/order")
+	@GetMapping
 	public List<OrderVO> getOrders() {
 		return orderService.getAllOrder();
 	}
@@ -73,8 +92,8 @@ public class OrderController {// singleton, spring bean
 		return errors;
 	}
 
-	@PostMapping("/order") // HTTP method+path = REST API endpoint
-	public Integer createOrder(@Valid @RequestBody OrderVO orderVO) throws IOException {
+	@PostMapping // HTTP method+path = REST API endpoint
+	public Integer createOrder(@Valid @RequestBody OrderVO orderVO)  {
 		OrderVO savedOrder = null;
 		savedOrder = orderService.createOrder(orderVO);
 		return savedOrder.getId();
