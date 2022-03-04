@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class OrderVO { // value object
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	Integer id;
 

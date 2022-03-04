@@ -1,6 +1,5 @@
 package com.oms.order.service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import com.oms.order.vo.OrderVO;
@@ -18,6 +18,8 @@ public class OrderService implements IOrderService {
 	@Autowired
 	OrderRepository orderRepo;
 
+	@Autowired 
+	JmsTemplate template;
 	@Value("{schema}")
 	String schema;
 
@@ -30,11 +32,14 @@ public class OrderService implements IOrderService {
 	}
 
 	@Override
-	@Transactional(rollbackOn = Exception.class)
+	@Transactional
 	public OrderVO createOrder(OrderVO order) {
-		float updatedPrice = (float) (order.getPrice() * 0.9);
-		order.setPrice(updatedPrice );
-		orderRepo.save(order);
+		template.convertAndSend("orders", order);
+		if (order.getPrice() > 100) {
+			float updatedPrice = (float) (order.getPrice() * 0.9);
+			order.setPrice(updatedPrice);
+		}
+		orderRepo.save(order);//getting mocked
 		int a = 1;
 //		if (a == 1)
 //			throw new IOException();
