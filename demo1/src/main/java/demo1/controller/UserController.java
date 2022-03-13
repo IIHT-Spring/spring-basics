@@ -4,15 +4,16 @@ import demo1.service.IUserService;
 
 public class UserController {// receive request
 	IUserService userService;// dependency, reference
-	String url;
-	
-	public void setUserService(IUserService userService) {
+
+	public UserController(IUserService userService) {
 		this.userService = userService;
 	}
 
+	String url;
+
 	public Integer createUser() {
-		// Logic <- testing this
-		return userService.saveUser();//need to mock this dependency
+		// Logic
+		return userService.saveUser();
 	}
 
 	public String getUrl() {

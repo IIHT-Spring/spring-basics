@@ -4,7 +4,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean  class="demo1.controller.UserController" id="userController" >
+	<bean scope="prototype" class="demo1.controller.UserController" id="userController" >
+		<constructor-arg ref="service1"></constructor-arg>
 		<property name="url" value="http://yahoo.com"></property>
 	</bean>
 	<bean class="demo1.service.UserService" id="service1"></bean>
